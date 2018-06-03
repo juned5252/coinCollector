@@ -14,6 +14,8 @@ var gameOver = false;
 var currentScore = 0;
 var lives = 3;
 var winningScore = 100;
+var s;
+var music
 
 function createStars() {
     stars = game.add.physicsGroup();
@@ -93,7 +95,7 @@ window.onload = function () {
 
     function preload() {
 
-       // game.stage.backgroundColor = '#89889c';
+        game.load.audio('boden', ['16876_intense_level_180_bpm_proudmusiclibrary.com_vo_preview.mp3']);
 
         //Load images
         game.load.image('platform', 'platform_2.png');
@@ -111,6 +113,8 @@ window.onload = function () {
         player = game.add.sprite(90, 1200, 'player');
         player.animations.add('walk');
         player.anchor.setTo(0.5, 1);
+        music = game.add.audio('boden');
+        music.play();
 
         game.physics.arcade.enable(player);
 
@@ -165,6 +169,24 @@ window.onload = function () {
         if (gameOver) {
             finalMessage.text = "GAME OVER!!!";
         }
+
+        if (cursors.up.isDown)
+    {
+        game.camera.y -= 4;
+    }
+    else if (cursors.down.isDown)
+    {
+        game.camera.y += 4;
+    }
+
+    if (cursors.left.isDown)
+    {
+        game.camera.x -= 4;
+    }
+    else if (cursors.right.isDown)
+    {
+        game.camera.x += 4;
+    }
 
     }
 
